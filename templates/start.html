@@ -1,0 +1,82 @@
+
+{% extends 'base.html' %}
+{% block title %}Image Processing{% endblock %}
+{% block content %}
+
+<section class="upload-section">
+    <div class="container">
+        <h2 class="section-heading">Upload Image</h2>
+        <form action="/start" method="POST" enctype="multipart/form-data"> 
+                <input type="file" name="file" accept="image/*" onchange="previewImage(event)" required><br>
+                <p>Choose an option:</p>
+            <div class="form-group">
+
+                <input type="number" name="value2" placeholder="Size in Kb" min="1">
+                <button type="submit" name="process" value="reduce_size">Reduce Size</button>
+
+                <input type="number" name="value" placeholder="Angle">
+                <button type="submit" name="process" value="rotate">Rotate Image</button>
+
+                <input type="number" name="value1" placeholder="Blur Intensity" min="0">
+                <button type="submit" name="process" value="blur">Add Blur</button>
+          
+                <input type="number" name="percentage" placeholder=" % Crop" min="0" max="99">
+                <button type="submit" name="process" value="crop">Crop Image</button>
+            </div>
+            <div class="form-group2">
+                <button type="submit" name="process" value="enhance">Enhance Image</button>
+            </div>
+            <div class="form-group2">
+                <button type="submit" name="process" value="remove_bg">Remove Background</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<section class="image-preview">
+    <div class="container">
+        <h2 class="section-heading">Uploaded Image Preview</h2>
+        <div class="image-container">
+            <img id="uploaded-image" src="#" alt="Uploaded Image">
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+ // Function to preview the uploaded image
+function previewImage(event) {
+    var uploadedImage = document.getElementById('uploaded-image');
+    uploadedImage.src = URL.createObjectURL(event.target.files[0]);
+
+    // Store image data in session storage
+    sessionStorage.setItem('uploadedImage', uploadedImage.src);
+}
+
+// Check if there's a previously uploaded image in session storage
+window.onload = function() {
+    var uploadedImageSrc = sessionStorage.getItem('uploadedImage');
+    if (uploadedImageSrc) {
+        var uploadedImage = document.getElementById('uploaded-image');
+        uploadedImage.src = uploadedImageSrc;
+    }
+};
+
+// Clear session storage on page refresh
+window.onbeforeunload = function() {
+    sessionStorage.removeItem('uploadedImage');
+};
+
+
+    function scrollToFeatures() {
+        var featuresSection = document.getElementById('contact');
+        featuresSection.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+{% endblock %}
+</body>
+</html>
+

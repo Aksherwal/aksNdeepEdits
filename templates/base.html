@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <div class="header-container">
+        <div class="logo">
+            <img src="/static/logo.png" alt="Website Logo">
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Features</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#" onclick="scrollToFeatures()">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+{% block content %}{% endblock %}
+
+<footer class="footer">
+    <div class="fcontainer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <ul>
+                    <li>Email: aksherwal110@gmail.com</li>
+                    <li>Phone: +91 9557521160</li>
+                    <li>Address: SRMCEM, Lucknow(U.P.), India</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 id="contact">Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/aakash-kumar-aa0b591b8/"><img src="/static/linkedIN.png"></i></a>
+                    <a href="https://github.com/Aksherwal"><img src="/static/github.png"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 aksNdeepEdits. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+{% block javascript %}{% endblock %}
+</body>
+</html>

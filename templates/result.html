@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Result Image{% endblock %}
+{% block content %}
+
+<section class="processed-image-section">
+    <div class="container">
+        <h2 class="section-heading">Processed Image</h2>
+        <div class="image-container">
+            <img id="processed-image" src="data:image/jpeg;base64,{{ processed_image }}" alt="Processed-Image">
+        </div>
+        <div class="download-button">
+            <a href="/start">Go Back</a>
+            <a id="download-link" download="{{ filename }}" onclick="downloadProcessedFile('{{ processed_image }}')">Download Processed Image</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block javascript %}
+<script>
+       function downloadProcessedFile(encodedData) {
+        var link = document.createElement('a');
+        link.href = 'data:image/jpeg;base64,' + encodedData;
+        link.download = 'processed_image.jpg';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    function scrollToFeatures() {
+        var featuresSection = document.getElementById('contact');
+        featuresSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    </script>
+{% endblock %}
+</body>
+</html>
