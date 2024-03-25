@@ -3,7 +3,6 @@ Werkzeug==3.0.1
 Pillow==10.2.0  
 OpenCV-Python==4.9.0.80
 OpenCV-Python-headless==4.9.0.80  
-numpy==1.23.5 
 scikit-image==0.22.0  
 rembg==2.0.56 
 cv==1.0.0
