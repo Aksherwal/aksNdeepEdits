@@ -27,7 +27,7 @@ def crop_image(image, percentage):
     lower = height - crop_height
     cropped_img = img.crop((left, upper, right, lower))
     output = BytesIO()
-    cropped_img.save(output, format='JPEG')
+    cropped_img.save(output, format='PNG')
     return output.getvalue()
         
 def rotate_image(image, angle):
