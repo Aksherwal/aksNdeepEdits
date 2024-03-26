@@ -5,10 +5,11 @@ from PIL import Image, ImageEnhance
 import cv2
 import numpy as np
 from skimage import exposure
-from rembg import remove
+import requests
 
 app = Flask(__name__)
 
+REMOVE_BG_API_KEY = 'WjuyCBRb4yJ2Ce9WSLDUGadc'
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -73,13 +74,24 @@ def reduce_file_size(image, desired_size):
     img_temp.seek(0)
     return img_temp.getvalue()
 
-def remove_background(image):
-    input_image = Image.open(BytesIO(image))
-    output = remove(input_image)
-    output_bytes = BytesIO()
-    output.save(output_bytes, format='PNG')
-    return output_bytes.getvalue()
+def remove_background(image_data):
+    url = 'https://api.remove.bg/v1.0/removebg'
+    files = {'image_file': image_data}
+    headers = {'X-Api-Key': REMOVE_BG_API_KEY}
 
+    try:
+        response = requests.post(url, files=files, headers=headers)
+        if response.status_code == 200:
+            # Return the processed image data
+            return response.content
+        else:
+            # Handle API errors
+            print("Error processing image: ", response.text)
+            return None
+    except Exception as e:
+        # Handle exceptions
+        print("Error processing image: ", e)
+        return None
 @app.route('/')
 def index():
     return render_template('index.html')
