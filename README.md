@@ -22,7 +22,7 @@ aksndeepEdits is a Flask-based web application that provides various image proce
 
 1. Clone the repository:
 ```
-git clone https://github.com/your-username/aksNdeepEdits.git
+git clone https://github.com/Aksherwal/aksNdeepEdits.git
 ```
 2. Create a virtual environment and activate it:
 ```
