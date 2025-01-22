@@ -234,9 +234,6 @@ def about():
 
 # Run the Flask app
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
-if __name__ == "__main__":
-    from werkzeug.middleware.proxy_fix import ProxyFix
-    app.wsgi_app = ProxyFix(app.wsgi_app)
-    app.run(debug=False, host='0.0.0.0', port=8000)
+if __name__ == '__main__':
+    app.run(debug=True)
+
