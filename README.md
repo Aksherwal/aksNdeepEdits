@@ -50,10 +50,6 @@ python app.py
 5. Click the "Process" button to apply the selected transformation to the image.
 6. The processed image will be displayed on the "Result" page.
 
-## Contributing
-
-If you find any issues or have suggestions for improvements, please feel free to create a new issue or submit a pull request. Contributions are always welcome!
-
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
